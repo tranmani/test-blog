@@ -1,18 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "./pages/App";
 import reportWebVitals from "./reportWebVitals";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Detail from "./pages/Detail";
+import Layout from "./components/Layout";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
-      <App />
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/:categoryName/:articleName" element={<Detail />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
     </ThemeProvider>
     ,
   </React.StrictMode>,

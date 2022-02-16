@@ -1,0 +1,81 @@
+{
+  "categories": [
+    {
+      "name": "Casino",
+      "slug": "casino",
+      "isFolder": false
+    },
+    {
+      "name": "Live Casino",
+      "slug": "live-casino",
+      "isFolder": false
+    },
+    {
+      "name": "Sports",
+      "slug": "sports",
+      "isFolder": false
+    },
+    {
+      "name": "Football",
+      "slug": "football",
+      "isFolder": true,
+      "items": [
+        {
+          "name": "Premier League",
+          "slug": "premier-league",
+          "isFolder": false
+        },
+        {
+          "name": "Championship",
+          "slug": "championship",
+          "isFolder": false
+        },
+        {
+          "name": "La Liga",
+          "slug": "la-liga",
+          "isFolder": false
+        },
+        {
+          "name": "Bundesliga",
+          "slug": "bundesliga",
+          "isFolder": false
+        },
+        {
+          "name": "Serie A",
+          "slug": "serie-a",
+          "isFolder": false
+        },
+        {
+          "name": "Liga 1",
+          "slug": "liga-1",
+          "isFolder": false
+        }
+      ]
+    },
+    {
+      "name": "E-Sports",
+      "slug": "e-sports",
+      "isFolder": false
+    },
+    {
+      "name": "New Slots",
+      "slug": "new-slots",
+      "isFolder": false
+    },
+    {
+      "name": "Guides",
+      "slug": "guides",
+      "isFolder": false
+    },
+    {
+      "name": "Affiliate",
+      "slug": "affiliate",
+      "isFolder": false
+    },
+    {
+      "name": "Betfinal",
+      "slug": "betfinal",
+      "isFolder": false
+    }
+  ]
+}
