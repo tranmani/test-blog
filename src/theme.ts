@@ -3,7 +3,7 @@ import { red } from '@mui/material/colors';
 
 export const palette = {
   primary: {
-    main: '#556cd6',
+    main: '#191919',
   },
   secondary: {
     main: '#f3f3f3',
@@ -22,6 +22,13 @@ const theme = createTheme({
         root: {
           textTransform: 'none',
           borderRadius: 0,
+        }
+      }
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: 'none',
         }
       }
     }

@@ -3,7 +3,9 @@ import { styled, Box, Typography } from "@mui/material";
 
 const Container = styled("div")(({ theme }) => ({
   // paddingLeft: 5,
-  padding: `${theme.spacing(7)} ${theme.spacing(7)}`,
+  [theme.breakpoints.up("sm")]: {
+    padding: `${theme.spacing(7)} ${theme.spacing(7)}`,
+  },
 }));
 
 interface Props {

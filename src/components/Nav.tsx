@@ -7,6 +7,7 @@ import { Category } from "../types/dataTypes";
 const NavContainer = styled("div")(({ theme }) => ({
   display: "flex",
   columnGap: "3px",
+  flexWrap: "wrap",
   margin: `${theme.spacing(4)} 0`,
 }));
 
