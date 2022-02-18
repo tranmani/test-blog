@@ -2,9 +2,9 @@ import React from "react";
 import { styled, Box, Typography } from "@mui/material";
 
 const Container = styled("div")(({ theme }) => ({
-  // paddingLeft: 5,
-  [theme.breakpoints.up("sm")]: {
-    padding: `${theme.spacing(7)} ${theme.spacing(7)}`,
+  padding: theme.spacing(7),
+  [theme.breakpoints.down("sm")]: {
+    padding: theme.spacing(2),
   },
 }));
 
@@ -12,9 +12,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const SideBar: React.FC<Props> = (props: Props) => {
-  const FeatureArticle = props;
-
+const SideBar: React.FC<Props> = ({ children }) => {
   return (
     <Container>
       <Typography variant="h5" sx={{ paddingBottom: 4 }}>

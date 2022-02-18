@@ -1,0 +1,28 @@
+{
+  "promotions": [
+    {
+      "id": 1,
+      "altText": "alt text1",
+      "link": "https://dummyimage.com/900x500/000/fff",
+      "picture": "https://dummyimage.com/600x400/000/fff.png"
+    },
+    {
+      "id": 2,
+      "altText": "alt text2",
+      "link": "link2",
+      "picture": "https://dummyimage.com/600x400/000/fff.png"
+    },
+    {
+      "id": 3,
+      "altText": "alt text3",
+      "link": "link3",
+      "picture": "https://dummyimage.com/600x400/000/fff.png"
+    },
+    {
+      "id": 4,
+      "altText": "alt text4",
+      "link": "link4",
+      "picture": "https://dummyimage.com/600x400/000/fff.png"
+    }
+  ]
+}

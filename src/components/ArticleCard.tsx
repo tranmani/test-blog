@@ -1,18 +1,25 @@
 import React from "react";
-import { Box, styled, Typography } from "@mui/material";
+import {
+  Box,
+  Link,
+  styled,
+  Theme,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { Article } from "../types/dataTypes";
 import truncate from "../utils/truncate";
 import { FootballSubCategories } from "../types/dataTypes";
-import { Link } from "react-router-dom";
 
 const CardContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(2),
-  // maxHeight: "100%",
+  height: "100%",
 }));
 
 export const ReadMore = styled(Link)(({ theme }) => ({
   color: theme.palette.text.primary,
   textDecoration: "none",
+  fontWeight: "900",
 }));
 
 interface Props {
@@ -20,6 +27,8 @@ interface Props {
 }
 
 const ArticleCard: React.FC<Props> = ({ article }) => {
+  const mobile = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+
   const isSubCategory = () => {
     if (FootballSubCategories.includes(article?.category || ""))
       return (
@@ -29,8 +38,10 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
             pt: 1,
             pb: 2,
           }}>
-          Foodball /{" "}
-          <span style={{ fontWeight: "900" }}>{article?.category}</span>
+          <Link href={"/foodball"}>Foodball</Link> /{" "}
+          <Link href={`/foodball/${article?.category}`}>
+            <span style={{ fontWeight: "900" }}>{article?.category}</span>
+          </Link>
         </Typography>
       );
     else
@@ -41,44 +52,55 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
             pt: 1,
             pb: 2,
           }}>
-          {article?.category}
+          <Link href={article?.category}>{article?.category}</Link>
         </Typography>
       );
   };
 
   return (
     <CardContainer className="hover-effect">
-      <Box
-        component="img"
-        src={article?.picture || "https://dummyimage.com/600x400/000/fff"}
-        alt="article"
-        sx={{ objectFit: "cover", width: "100%", maxHeight: "325px" }}
-      />
-      {/* Category */}
-      {isSubCategory()}
-      {/* Title */}
-      <Typography
-        variant="h5"
-        sx={{
-          fontWeight: "bold",
-        }}>
-        {article?.title || "Betfinal last promotional video for affiliate"}
-      </Typography>
-      {/* Excerpt */}
-      <Typography
-        variant="body2"
-        sx={{
-          pb: 1,
-        }}>
-        {truncate(article?.excerpt || "", 150) ||
-          truncate(
-            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium asperiores pariatur error beatae animi! Molestias explicabo fugit reiciendis, voluptate quis officiis iusto fuga velit animi qui exercitationem dolorum labore ipsam eligendi quam blanditiis placeat aliquam unde ullam eaque maiores corrupti tenetur quisquam! Molestias porro doloribus harum! Expedita aliquam cupiditate eligendi vero nihil obcaecati nesciunt, non quisquam est odio vel, tempore veniam? Laudantium, nobis! Vitae odit iure aspernatur quibusdam doloribus hic eum officiis minus ad ipsam, nesciunt aliquid, dolorem iusto sequi, iste nulla inventore eveniet eius sunt amet.",
-            150
-          )}{" "}
-        <ReadMore to={`${article?.category}/${article?.slug}` || "/"}>
-          READ MORE
-        </ReadMore>
-      </Typography>
+      <Box sx={{ height: "100%" }}>
+        <Link href={`${article?.category}/${article?.slug}` || "/"}>
+          <Box
+            component="img"
+            src={article?.picture || "https://dummyimage.com/600x400/000/fff"}
+            alt="article"
+            sx={{ objectFit: "cover", width: "100%", maxHeight: "325px" }}
+          />
+        </Link>
+        {/* Category */}
+        {isSubCategory()}
+        {/* Title */}
+        <Link href={`${article?.category}/${article?.slug}` || "/"}>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: { xs: "900", md: "700" },
+              pb: 2,
+              fontSize: { xs: "1rem", md: "1.5rem" },
+            }}>
+            {truncate(article?.title || "", 70) ||
+              "Betfinal last promotional video for affiliate"}
+          </Typography>
+        </Link>
+        {/* Excerpt */}
+        {!mobile && (
+          <Typography
+            variant="body2"
+            sx={{
+              pb: 1,
+            }}>
+            {truncate(article?.excerpt || "", 120) ||
+              truncate(
+                "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium asperiores pariatur error beatae animi! Molestias explicabo fugit reiciendis, voluptate quis officiis iusto fuga velit animi qui exercitationem dolorum labore ipsam eligendi quam blanditiis placeat aliquam unde ullam eaque maiores corrupti tenetur quisquam! Molestias porro doloribus harum! Expedita aliquam cupiditate eligendi vero nihil obcaecati nesciunt, non quisquam est odio vel, tempore veniam? Laudantium, nobis! Vitae odit iure aspernatur quibusdam doloribus hic eum officiis minus ad ipsam, nesciunt aliquid, dolorem iusto sequi, iste nulla inventore eveniet eius sunt amet.",
+                120
+              )}{" "}
+            <ReadMore href={`${article?.category}/${article?.slug}` || "/"}>
+              READ MORE
+            </ReadMore>
+          </Typography>
+        )}
+      </Box>
     </CardContainer>
   );
 };

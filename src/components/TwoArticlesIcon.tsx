@@ -1,17 +1,18 @@
 import React from "react";
-import { Link, styled } from "@mui/material";
+import { Link, styled, Typography } from "@mui/material";
 import { Article } from "../types/dataTypes";
 import truncate from "../utils/truncate";
 import { DividedLine } from "./RelatedArticle";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 
-const ArticleItem = styled("div")(({ theme }) => ({
+const ArticleItem = styled(Link)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   margin: theme.spacing(1),
 }));
 
-const ArticleTitle = styled(Link)(({ theme }) => ({
+const ArticleTitle = styled(Typography)(({ theme }) => ({
+  fontWeight: "700",
   "&:hover": {
     fontWeight: "900",
   },
@@ -32,11 +33,11 @@ const TwoArticlesIcon: React.FC<Props> = ({ articles }) => {
       <DividedLine sx={{ ml: 2, mr: 2 }} />
       {articles?.map((article: Article, index: number) => {
         return (
-          <ArticleItem key={article.title}>
+          <ArticleItem
+            key={article.title}
+            href={`${article.category}/${article.slug}`}>
             <ArrowIcon sx={{ m: 1 }} />
-            <ArticleTitle
-              href={`${article.category}/${article.slug}`}
-              variant={"h6"}>
+            <ArticleTitle variant={"h6"}>
               {truncate(article.title, 35)}
             </ArticleTitle>
           </ArticleItem>

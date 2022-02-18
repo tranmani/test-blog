@@ -12,6 +12,8 @@ const NavContainer = styled("div")(({ theme }) => ({
 }));
 
 const NavItem = styled(Button)(({ theme }) => ({
+  fontSize: "0.775rem",
+  width: theme.spacing(10),
   color: "black",
   padding: "5px",
   "&:hover": {
@@ -20,7 +22,7 @@ const NavItem = styled(Button)(({ theme }) => ({
   },
 }));
 
-const Nav: React.FC = ({ children }) => {
+const Nav: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -35,7 +37,11 @@ const Nav: React.FC = ({ children }) => {
       <NavContainer>
         {categories.categories.map((category: Category) => {
           if (!category.isFolder)
-            return <NavItem key={category.name}>{category.name}</NavItem>;
+            return (
+              <NavItem key={category.name} disableRipple={true}>
+                {category.name}
+              </NavItem>
+            );
           else
             return (
               <>
@@ -66,7 +72,10 @@ const Nav: React.FC = ({ children }) => {
                   <div onMouseLeave={handleClose}>
                     {category.items?.map((subcategory: Category) => {
                       return (
-                        <MenuItem onClick={handleClose} key={subcategory.name}>
+                        <MenuItem
+                          onClick={handleClose}
+                          sx={{ fontSize: "0.775rem" }}
+                          key={subcategory.name}>
                           {subcategory.name}
                         </MenuItem>
                       );

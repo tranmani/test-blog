@@ -15,6 +15,14 @@ export interface Article {
   category: string;
   date: string;
 }
+
+export interface Promotion {
+  id: number;
+  altText: string;
+  link: string;
+  picture: string;
+}
+
 export const Categories = ["Casino", "Sports", "Football", "Esports", "New Slots", "Guides", "Affiliate", "Betfinal"];
 export const FootballSubCategories = ["Premier League", "Championship", "La Liga", "Bundesliga", "Serie A", "Liga 1"]
 
