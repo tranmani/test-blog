@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, styled, Typography } from "@mui/material";
-import { Article } from "../types/dataTypes";
-import truncate from "../utils/truncate";
+import { ArticleType } from "../../types/dataTypes";
+import truncate from "../../utils/truncate";
 import { DividedLine } from "./RelatedArticle";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 
@@ -24,14 +24,14 @@ const ArrowIcon = styled(ArrowCircleRightOutlinedIcon)(({ theme }) => ({
 }));
 
 interface Props {
-  articles?: Article[];
+  articles?: ArticleType[];
 }
 
 const TwoArticlesIcon: React.FC<Props> = ({ articles }) => {
   return (
     <>
       <DividedLine sx={{ ml: 2, mr: 2 }} />
-      {articles?.map((article: Article, index: number) => {
+      {articles?.map((article: ArticleType, index: number) => {
         return (
           <ArticleItem
             key={article.title}

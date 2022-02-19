@@ -33,6 +33,26 @@ const theme = createTheme({
       }
     }
   },
+  typography: {
+    h1: {
+      color: palette.primary.main,
+    },
+    h2: {
+      color: palette.primary.main,
+    },
+    h3: {
+      color: palette.primary.main,
+    },
+    h4: {
+      color: palette.primary.main,
+    },
+    h5: {
+      color: palette.primary.main,
+    },
+    h6: {
+      color: palette.primary.main,
+    }
+  },
   spacing: 8,
   breakpoints: {
     values: {

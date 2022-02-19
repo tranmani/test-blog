@@ -2,15 +2,21 @@ import React from "react";
 import "./App.css";
 import { alpha, Grid, styled, Typography } from "@mui/material";
 import Nav from "../components/Nav";
-import FeatureArticle from "../components/FeatureArticle";
-import SideBar from "../components/SideBar";
-import ArticleCard from "../components/ArticleCard";
+import FeatureArticle from "../components/Main/FeatureArticle";
+import SideBar from "../components/SideBar/SideBar";
+import ArticleCard from "../components/Main/ArticleCard";
+import { ArticleType, GUIDES, PromotionType } from "../types/dataTypes";
+import TwoArticlesIcon from "../components/Main/TwoArticlesIcon";
+import ArticleTitle from "../components/Main/ArticleTitle";
+import PromotionPicture from "../components/Main/PromotionPicture";
+
+// Data
 import news from "../data/news.json";
 import promotions from "../data/promotions.json";
-import { Article, Promotion } from "../types/dataTypes";
-import TwoArticlesIcon from "../components/TwoArticlesIcon";
-import ArticleTitle from "../components/ArticleTitle";
-import PromotionPicture from "../components/PromotionPicture";
+import liveFootballs from "../data/liveFootballs.json";
+import advertisement from "../data/advertisement.json";
+import casinoWins from "../data/casinoWins.json";
+import highProfitBets from "../data/highProfitBets.json";
 
 const Container = styled("div")(({ theme }) => ({
   display: "flex",
@@ -19,21 +25,21 @@ const Container = styled("div")(({ theme }) => ({
 }));
 
 const HeaderText = styled(Typography)(({ theme }) => ({
-  padding: theme.spacing(4),
+  paddingTop: theme.spacing(4),
+  fontWeight: 900,
   [theme.breakpoints.down("md")]: {
-    padding: theme.spacing(2),
+    paddingTop: theme.spacing(2),
   },
-  // [theme.breakpoints.down("sm")]: {
-  //   padding: `${theme.spacing(4)} 0 0 ${theme.spacing(4)}`,
-  // },
 }));
 
 const MainContainer = styled("div")(({ theme }) => ({
   width: "75%",
   padding: theme.spacing(7),
+  [theme.breakpoints.down("lg")]: {
+    padding: theme.spacing(3),
+  },
   [theme.breakpoints.down("md")]: {
     width: "100%",
-    padding: theme.spacing(4),
   },
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(0),
@@ -53,29 +59,36 @@ const SideBarContainer = styled("div")(({ theme }) => ({
   },
   [theme.breakpoints.down("md")]: {
     width: "100%",
+    backgroundColor: "white",
   },
 }));
 
 const App: React.FC = () => {
+  const featureArticle = [...news.news][0];
+  const relatedArticles = [...news.news].splice(0, 4);
   const latestNewsCards = [...news.news].splice(0, 6);
   const latestNewsTitles = [...news.news].splice(0, 12);
   const nextArticles = [...news.news].splice(0, 2);
+  const bettingGuides = [...news.news]
+    .filter((article: ArticleType) => article.category === GUIDES)
+    .splice(0, 9);
 
   return (
     <Container>
       <MainContainer>
-        <HeaderText variant="h5" sx={{ fontWeight: 900, pl: 2 }}>
-          Blog News Feed
-        </HeaderText>
+        <HeaderText variant="h5">Blog News Feed</HeaderText>
         <Nav />
         {/* Feature article */}
-        <FeatureArticle />
+        <FeatureArticle
+          featureArticle={featureArticle}
+          relatedArticles={relatedArticles}
+        />
         <Grid container pt={2}>
           <Grid item xs={6}>
-            <ArticleCard article={news.news[0] as Article} />
+            <ArticleCard article={news.news[0] as ArticleType} />
           </Grid>
           <Grid item xs={6}>
-            <ArticleCard article={news.news[1] as Article} />
+            <ArticleCard article={news.news[1] as ArticleType} />
           </Grid>
           <Grid item xs={6}>
             <TwoArticlesIcon articles={nextArticles} />
@@ -91,31 +104,31 @@ const App: React.FC = () => {
         </HeaderText>
 
         <Grid container sx={{ pb: 5 }}>
-          {latestNewsCards.map((article: Article, index: number) => {
+          {latestNewsCards.map((article: ArticleType, index: number) => {
             return (
               <Grid item xs={6} key={article.title}>
-                <ArticleCard article={article as Article} />
+                <ArticleCard article={article as ArticleType} />
               </Grid>
             );
           })}
         </Grid>
 
         <Grid container>
-          {latestNewsTitles.map((article: Article, index: number) => {
+          {latestNewsTitles.map((article: ArticleType, index: number) => {
             return (
               <Grid item xs={12} md={6} key={article.title}>
-                <ArticleTitle article={article as Article} />
+                <ArticleTitle article={article as ArticleType} />
               </Grid>
             );
           })}
         </Grid>
 
         {/* Latest Promotions */}
-        <HeaderText variant="h6" sx={{ fontWeight: 900, pt: 3, pl: 2 }}>
+        <HeaderText variant="h6" sx={{ fontWeight: 900, pt: 3, pl: { xs: 2 } }}>
           Latest Promotions
         </HeaderText>
         <Grid container>
-          {promotions.promotions.map((promotion: Promotion) => {
+          {promotions.promotions.map((promotion: PromotionType) => {
             return (
               <Grid item xs={6} key={promotion.altText}>
                 <PromotionPicture promotion={promotion} />
@@ -126,7 +139,13 @@ const App: React.FC = () => {
       </MainContainer>
 
       <SideBarContainer>
-        <SideBar />
+        <SideBar
+          liveFootballs={liveFootballs.liveFootballs}
+          advertisement={advertisement}
+          bettingGuides={bettingGuides}
+          casinoWins={casinoWins.casinoWins}
+          highProfitBets={highProfitBets.highProfitBets}
+        />
       </SideBarContainer>
     </Container>
   );

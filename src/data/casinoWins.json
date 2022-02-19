@@ -1,0 +1,44 @@
+{
+  "casinoWins": [
+    {
+      "id": 1,
+      "link": "http://betfinal.com/",
+      "picture": "https://dummyimage.com/50x50/000/fff.png",
+      "name": "Huy 23",
+      "amount": "$1890",
+      "game": "Gold Rush"
+    },
+    {
+      "id": 2,
+      "link": "http://betfinal.com/",
+      "picture": "https://dummyimage.com/50x50/000/fff.png",
+      "name": "Huy 234",
+      "amount": "$1890",
+      "game": "Gold Rush"
+    },
+    {
+      "id": 3,
+      "link": "http://betfinal.com/",
+      "picture": "https://dummyimage.com/50x50/000/fff.png",
+      "name": "Huy",
+      "amount": "$1890",
+      "game": "Gold Rush"
+    },
+    {
+      "id": 4,
+      "link": "http://betfinal.com/",
+      "picture": "https://dummyimage.com/50x50/000/fff.png",
+      "name": "Huy 2345",
+      "amount": "$1890",
+      "game": "Gold Rush"
+    },
+    {
+      "id": 5,
+      "link": "http://betfinal.com/",
+      "picture": "https://dummyimage.com/50x50/000/fff.png",
+      "name": "Huy",
+      "amount": "$1890",
+      "game": "Gold Rush"
+    }
+  ]
+}

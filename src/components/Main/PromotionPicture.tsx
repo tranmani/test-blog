@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Link } from "@mui/material";
-import { Promotion } from "../types/dataTypes";
+import { PromotionType } from "../../types/dataTypes";
 
 interface Props {
-  promotion?: Promotion;
+  promotion?: PromotionType;
 }
 
 const PromotionPicture: React.FC<Props> = ({ promotion }) => {

@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Menu, MenuItem, styled } from "@mui/material";
+import { Button, Menu, MenuItem, styled, Box } from "@mui/material";
 import categories from "../data/categories.json";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { Category } from "../types/dataTypes";
+import { CategoryType } from "../types/dataTypes";
 
 const NavContainer = styled("div")(({ theme }) => ({
   display: "flex",
@@ -35,7 +35,7 @@ const Nav: React.FC = () => {
   return (
     <>
       <NavContainer>
-        {categories.categories.map((category: Category) => {
+        {categories.categories.map((category: CategoryType) => {
           if (!category.isFolder)
             return (
               <NavItem key={category.name} disableRipple={true}>
@@ -44,11 +44,12 @@ const Nav: React.FC = () => {
             );
           else
             return (
-              <>
+              <Box
+                component={"span"}
+                key={category.name}
+                onClick={handleClick}
+                onMouseEnter={handleClick}>
                 <NavItem
-                  key={category.name}
-                  onClick={handleClick}
-                  onMouseEnter={handleClick}
                   // onMouseLeave={handleClose}
                   disableRipple={true}
                   sx={{ cursor: "unset" }}>
@@ -70,7 +71,7 @@ const Nav: React.FC = () => {
                     },
                   }}>
                   <div onMouseLeave={handleClose}>
-                    {category.items?.map((subcategory: Category) => {
+                    {category.items?.map((subcategory: CategoryType) => {
                       return (
                         <MenuItem
                           onClick={handleClose}
@@ -82,7 +83,7 @@ const Nav: React.FC = () => {
                     })}
                   </div>
                 </Menu>
-              </>
+              </Box>
             );
         })}
       </NavContainer>

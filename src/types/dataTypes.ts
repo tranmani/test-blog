@@ -1,11 +1,11 @@
-export interface Category {
+export interface CategoryType {
   name: string;
   slug: string;
   isFolder: boolean;
-  items?: Category[];
+  items?: CategoryType[];
 }
 
-export interface Article {
+export interface ArticleType {
   id: number;
   title: string;
   slug: string;
@@ -16,11 +16,48 @@ export interface Article {
   date: string;
 }
 
-export interface Promotion {
+export interface PromotionType {
   id: number;
   altText: string;
   link: string;
   picture: string;
+}
+
+export interface LiveFootballType {
+  id: number;
+  homeTeam: {
+    name: string;
+    logo: string;
+  }
+  awayTeam: {
+    name: string;
+    logo: string;
+  };
+  link: string;
+}
+
+export interface AdvertisementType {
+  picture: string;
+  link: string;
+}
+
+export interface CasinoWinType {
+  id: number;
+  picture: string;
+  name: string;
+  amount: string;
+  game: string;
+  link: string;
+}
+
+export interface HighProfitBetType {
+  id: number;
+  betName: string;
+  a: string;
+  b: string;
+  low: string;
+  high: string;
+  link: string;
 }
 
 export const Categories = ["Casino", "Sports", "Football", "Esports", "New Slots", "Guides", "Affiliate", "Betfinal"];

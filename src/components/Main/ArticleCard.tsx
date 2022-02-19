@@ -7,9 +7,9 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Article } from "../types/dataTypes";
-import truncate from "../utils/truncate";
-import { FootballSubCategories } from "../types/dataTypes";
+import { ArticleType } from "../../types/dataTypes";
+import truncate from "../../utils/truncate";
+import { FootballSubCategories } from "../../types/dataTypes";
 
 const CardContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(2),
@@ -23,7 +23,7 @@ export const ReadMore = styled(Link)(({ theme }) => ({
 }));
 
 interface Props {
-  article?: Article;
+  article?: ArticleType;
 }
 
 const ArticleCard: React.FC<Props> = ({ article }) => {
@@ -71,17 +71,16 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
         {/* Category */}
         {isSubCategory()}
         {/* Title */}
-        <Link href={`${article?.category}/${article?.slug}` || "/"}>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: { xs: "900", md: "700" },
-              pb: 2,
-              fontSize: { xs: "1rem", md: "1.5rem" },
-            }}>
-            {truncate(article?.title || "", 70) ||
-              "Betfinal last promotional video for affiliate"}
-          </Typography>
+        <Link
+          variant="h5"
+          href={`${article?.category}/${article?.slug}` || "/"}
+          sx={{
+            fontWeight: { xs: "900", md: "700" },
+            pb: 2,
+            fontSize: { xs: "1rem", md: "1.5rem" },
+          }}>
+          {truncate(article?.title || "", 70) ||
+            "Betfinal last promotional video for affiliate"}
         </Link>
         {/* Excerpt */}
         {!mobile && (

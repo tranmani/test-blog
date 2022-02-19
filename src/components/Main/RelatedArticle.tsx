@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  Grid,
-  Link,
-  styled,
-  Theme,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import { Article } from "../types/dataTypes";
-import truncate from "../utils/truncate";
+import { Grid, styled, Theme, Typography, useMediaQuery } from "@mui/material";
+import { ArticleType } from "../../types/dataTypes";
+import ArticleTitle from "./ArticleTitle";
 
 export const DividedLine = styled("div")(({ theme }) => ({
   height: "2px",
@@ -31,16 +24,8 @@ const RelatedArticleContainer = styled(Grid)(({ theme }) => ({
   },
 }));
 
-const RelatedArticleItem = styled(Typography)(({ theme }) => ({
-  padding: theme.spacing(1),
-  fontWeight: "900",
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "0.9rem",
-  },
-}));
-
 interface Props {
-  articles?: Article[];
+  articles?: ArticleType[];
 }
 
 const RelatedArticle: React.FC<Props> = ({ articles }) => {
@@ -61,14 +46,13 @@ const RelatedArticle: React.FC<Props> = ({ articles }) => {
       </Typography>
       <Grid container spacing={2}>
         {articles &&
-          articles.map((article: Article, index: number) => {
+          articles.map((article: ArticleType, index: number) => {
             return (
               <RelatedArticleContainer item xs={12} md={6} key={article.title}>
-                <Link href={`${article?.category}/${article?.slug}` || "/"}>
-                  <RelatedArticleItem className="hover-effect" variant="h6">
-                    {truncate(article.title, mobileMD ? 70 : 50)}
-                  </RelatedArticleItem>
-                </Link>
+                <ArticleTitle
+                  article={article}
+                  maxTextLength={mobileMD ? 70 : 50}
+                />
               </RelatedArticleContainer>
             );
           })}

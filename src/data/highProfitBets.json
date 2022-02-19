@@ -1,0 +1,49 @@
+{
+  "highProfitBets": [
+    {
+      "id": 1,
+      "link": "http://betfinal.com/",
+      "betName": "NCAA Basketball",
+      "a": "Seton Hall Pirates",
+      "b": "Fairleigh Dickinson Knights",
+      "low": "1.05",
+      "high": "10.10"
+    },
+    {
+      "id": 2,
+      "link": "http://betfinal.com/",
+      "betName": "NCAA Basketball",
+      "a": "Seton Hall Pirates",
+      "b": "Fairleigh Dickinson Knights",
+      "low": "1.05",
+      "high": "10.10"
+    },
+    {
+      "id": 3,
+      "link": "http://betfinal.com/",
+      "betName": "NCAA Basketball",
+      "a": "Seton Hall Pirates",
+      "b": "Fairleigh Dickinson Knights",
+      "low": "1.05",
+      "high": "10.10"
+    },
+    {
+      "id": 4,
+      "link": "http://betfinal.com/",
+      "betName": "NCAA Basketball",
+      "a": "Seton Hall Pirates",
+      "b": "Fairleigh Dickinson Knights",
+      "low": "1.05",
+      "high": "10.10"
+    },
+    {
+      "id": 5,
+      "link": "http://betfinal.com/",
+      "betName": "CSGO fjsd sdfjasdf wlhr wqerjqwr sdf",
+      "a": "Seton Hall Pirates",
+      "b": "Fairleigh Dickinson Knights",
+      "low": "1.05",
+      "high": "10.10"
+    }
+  ]
+}

@@ -1,14 +1,11 @@
 import React from "react";
 import { Link, styled, Typography } from "@mui/material";
-import { Article } from "../types/dataTypes";
-import truncate from "../utils/truncate";
+import { ArticleType } from "../../types/dataTypes";
+import truncate from "../../utils/truncate";
 
-const CardContainer = styled("div")(({ theme }) => ({
+const CardContainer = styled(Typography)(({ theme }) => ({
   padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
   height: "100%",
-}));
-
-const CardText = styled(Typography)(({ theme }) => ({
   fontWeight: "900",
   fontSize: "1.1rem",
   [theme.breakpoints.down("sm")]: {
@@ -17,14 +14,15 @@ const CardText = styled(Typography)(({ theme }) => ({
 }));
 
 interface Props {
-  article?: Article;
+  article?: ArticleType;
+  maxTextLength?: number;
 }
 
-const ArticleTitle: React.FC<Props> = ({ article }) => {
+const ArticleTitle: React.FC<Props> = ({ article, maxTextLength }) => {
   return (
     <Link href={`${article?.category}/${article?.slug}` || "/"}>
-      <CardContainer className="hover-effect">
-        <CardText variant="h6">{truncate(article?.title || "", 90)}</CardText>
+      <CardContainer variant="h6" className="hover-effect">
+        {truncate(article?.title || "", maxTextLength || 90)}
       </CardContainer>
     </Link>
   );

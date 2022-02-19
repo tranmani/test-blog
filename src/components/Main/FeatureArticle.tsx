@@ -1,16 +1,19 @@
 import React from "react";
 import { Box, Link, Typography } from "@mui/material";
-import { Article } from "../types/dataTypes";
+import { ArticleType } from "../../types/dataTypes";
 import RelatedArticle from "./RelatedArticle";
-import news from "../data/news.json";
-import truncate from "../utils/truncate";
+import truncate from "../../utils/truncate";
 
 interface Props {
-  featureArticle?: Article;
+  featureArticle?: ArticleType;
+  relatedArticles?: ArticleType[];
 }
 
-const FeatureArticle: React.FC<Props> = ({ featureArticle }) => {
-  const relatedArticles = [...news.news].splice(0, 4);
+const FeatureArticle: React.FC<Props> = ({
+  featureArticle,
+  relatedArticles,
+}) => {
+  const articleDate = new Date((featureArticle && featureArticle?.date) || "");
 
   return (
     <>
@@ -25,8 +28,8 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle }) => {
           sx={{ objectFit: "cover", width: "100%", maxHeight: "500px" }}
         />
       </Link>
-      {/* Category */}
       <Box sx={{ px: { xs: 2, sm: 0 } }}>
+        {/* Category */}
         <Link href={featureArticle?.category || "/"}>
           <Typography
             variant="body2"
@@ -55,7 +58,9 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle }) => {
           sx={{
             pb: 1,
           }}>
-          {featureArticle?.date || "05 Nov 2021"}
+          {`${articleDate.getDate()} ${articleDate.toLocaleString("en-us", {
+            month: "short",
+          })} ${articleDate.getFullYear()}` || "05 Nov 2021"}
         </Typography>
         {/* Excerpt */}
         <Typography
@@ -71,7 +76,9 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle }) => {
         </Typography>
       </Box>
       {/* Related articles */}
-      <RelatedArticle articles={relatedArticles as Article[]} />
+      {relatedArticles && (
+        <RelatedArticle articles={relatedArticles as ArticleType[]} />
+      )}
     </>
   );
 };
