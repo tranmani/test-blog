@@ -66,7 +66,7 @@ const Nav: React.FC = () => {
             );
           else
             return (
-              <SubMenuContainer>
+              <SubMenuContainer key={category.name}>
                 <NavItem disableRipple={true} sx={{ cursor: "unset" }}>
                   {category.name} <KeyboardArrowDownIcon />
                 </NavItem>
