@@ -21,7 +21,7 @@ const NewsSideBarItem: React.FC<Props> = ({ article }) => {
       <Box
         component={"img"}
         src={article?.picture}
-        sx={{ objectFit: "cover", width: "100%", height: "150px" }}
+        sx={{ objectFit: "cover", width: "100%", height: "200px" }}
       />
     </Link>
   );

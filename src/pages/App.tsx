@@ -28,7 +28,6 @@ import highProfitBets from "../data/highProfitBets.json";
 const Container = styled("div")(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
-  height: "100%",
 }));
 
 const HeaderText = styled(Typography)(({ theme }) => ({
@@ -67,6 +66,9 @@ const SideBarContainer = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     width: "100%",
     backgroundColor: "white",
+    "&::before": {
+      width: 0,
+    },
   },
 }));
 

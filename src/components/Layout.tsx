@@ -4,7 +4,9 @@ import { Box, Container } from "@mui/material";
 const Layout: React.FC = ({ children }) => {
   return (
     <Container maxWidth="xl" disableGutters>
-      <Box sx={{ bgcolor: "#fff" }}>{children}</Box>
+      <div style={{ backgroundColor: "#fff", marginBottom: "-25px" }}>
+        {children}
+      </div>
     </Container>
   );
 };
