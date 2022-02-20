@@ -11,10 +11,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: url(../public/bg.png), url(../public/bg.png);
-  background-position: top left, top right;
-  background-repeat: no-repeat, no-repeat;
+  background-image: url(https://dummyimage.com/1920x1080/000/fff);
   background-attachment: fixed;
+  background-size: 100vh;
 }
 
 code {

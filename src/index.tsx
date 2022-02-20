@@ -7,21 +7,32 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Detail from "./pages/Detail";
+import DetailPage from "./pages/DetailPage";
 import Layout from "./components/Layout";
+import CategoryPage from "./pages/CategoryPage";
+import ErrorPage from "./pages/ErrorPage";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {/* Header Here */}
       <BrowserRouter>
         <Layout>
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/:categoryName/:articleName" element={<Detail />} />
+            <Route path="news">
+              <Route path=":categoryName/*" element={<CategoryPage />} />
+              <Route
+                path=":categoryName/:articleName"
+                element={<DetailPage />}
+              />
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </Layout>
       </BrowserRouter>
+      {/* Footer Here */}
     </ThemeProvider>
     ,
   </React.StrictMode>,

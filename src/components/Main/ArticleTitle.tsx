@@ -2,6 +2,7 @@ import React from "react";
 import { Link, styled, Typography } from "@mui/material";
 import { ArticleType } from "../../types/dataTypes";
 import truncate from "../../utils/truncate";
+import slugify from "../../utils/slugify";
 
 const CardContainer = styled(Typography)(({ theme }) => ({
   padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
@@ -20,7 +21,10 @@ interface Props {
 
 const ArticleTitle: React.FC<Props> = ({ article, maxTextLength }) => {
   return (
-    <Link href={`${article?.category}/${article?.slug}` || "/"}>
+    <Link
+      href={
+        `/news/${slugify(article?.category || "")}/${article?.slug}` || "/"
+      }>
       <CardContainer variant="h6" className="hover-effect">
         {truncate(article?.title || "", maxTextLength || 90)}
       </CardContainer>

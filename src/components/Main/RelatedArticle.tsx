@@ -18,9 +18,6 @@ const RelatedArticleContainer = styled(Grid)(({ theme }) => ({
   },
   [theme.breakpoints.down("md")]: {
     textAlign: "initial",
-    "&.MuiGrid-item": {
-      paddingTop: 0,
-    },
   },
 }));
 
@@ -44,11 +41,11 @@ const RelatedArticle: React.FC<Props> = ({ articles }) => {
         }}>
         Related Articles
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container>
         {articles &&
           articles.map((article: ArticleType, index: number) => {
             return (
-              <RelatedArticleContainer item xs={12} md={6} key={article.title}>
+              <RelatedArticleContainer item xs={12} md={6} key={article.id}>
                 <ArticleTitle
                   article={article}
                   maxTextLength={mobileMD ? 70 : 50}

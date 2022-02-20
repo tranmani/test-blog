@@ -1,6 +1,7 @@
 import React from "react";
 import { styled, Link } from "@mui/material";
 import { ArticleType } from "../../types/dataTypes";
+import slugify from "../../utils/slugify";
 
 const ComponentContainer = styled("div")(({ theme }) => ({
   position: "relative",
@@ -34,7 +35,7 @@ interface Props {
 
 const BettingGuideItem: React.FC<Props> = ({ article }) => {
   return (
-    <Link href={`/${article?.category}/${article?.slug}`}>
+    <Link href={`/news/${slugify(article?.category || "")}/${article?.slug}`}>
       <ComponentContainer>{article?.title}</ComponentContainer>
     </Link>
   );

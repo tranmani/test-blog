@@ -19,6 +19,7 @@ import LiveFootball from "./LiveFootball";
 import BettingGuideItem from "./BettingGuideItem";
 import CasinoWinItem from "./CasinoWinItem";
 import HighProfitBetItem from "./HighProfitBetItem";
+import NewsSideBarItem from "./NewsSideBarItem";
 
 const Container = styled("div")(({ theme }) => ({
   padding: theme.spacing(7),
@@ -31,11 +32,8 @@ const Container = styled("div")(({ theme }) => ({
 }));
 
 const HeaderText = styled(Typography)(({ theme }) => ({
-  padding: `${theme.spacing(4)} 0`,
+  padding: `${theme.spacing(2)} 0`,
   fontWeight: 900,
-  [theme.breakpoints.down("md")]: {
-    padding: `${theme.spacing(2)} 0`,
-  },
 }));
 
 interface Props {
@@ -44,6 +42,7 @@ interface Props {
   bettingGuides?: ArticleType[];
   casinoWins?: CasinoWinType[];
   highProfitBets?: HighProfitBetType[];
+  newsSideBar: ArticleType[];
 }
 
 const SideBar: React.FC<Props> = ({
@@ -52,6 +51,7 @@ const SideBar: React.FC<Props> = ({
   bettingGuides,
   casinoWins,
   highProfitBets,
+  newsSideBar,
 }) => {
   const mobileMD = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("md")
@@ -70,7 +70,7 @@ const SideBar: React.FC<Props> = ({
 
       {/* Advertisement */}
       {advertisement && (
-        <Link href={advertisement?.link} target="__blank">
+        <Link href={"/news/" + advertisement?.link} target="__blank">
           <Box
             component={"img"}
             src={advertisement?.picture}
@@ -92,8 +92,8 @@ const SideBar: React.FC<Props> = ({
         <Grid container spacing={1} sx={{ backgroundColor: "secondary.main" }}>
           {bettingGuides.map((article: ArticleType, index: number) => {
             return (
-              <Grid item xs={6} md={12}>
-                <BettingGuideItem article={article} key={article.slug} />
+              <Grid item xs={6} md={12} key={article.id}>
+                <BettingGuideItem article={article} />
               </Grid>
             );
           })}
@@ -103,7 +103,7 @@ const SideBar: React.FC<Props> = ({
       {/* Latest Casino Win */}
       {!mobileMD && (
         <>
-          <HeaderText variant="h5" sx={{ pt: 4, pb: 3 }}>
+          <HeaderText variant="h5" sx={{ pt: 5, pb: 3 }}>
             Latest Casino Win
           </HeaderText>
           {casinoWins && (
@@ -113,8 +113,8 @@ const SideBar: React.FC<Props> = ({
               sx={{ backgroundColor: "secondary.main" }}>
               {casinoWins.map((casinoWin: CasinoWinType, index: number) => {
                 return (
-                  <Grid item xs={12}>
-                    <CasinoWinItem casinoWin={casinoWin} key={casinoWin.id} />
+                  <Grid item xs={12} key={casinoWin.id}>
+                    <CasinoWinItem casinoWin={casinoWin} />
                   </Grid>
                 );
               })}
@@ -126,7 +126,7 @@ const SideBar: React.FC<Props> = ({
       {/* High Profit Bettings */}
       {!mobileMD && (
         <>
-          <HeaderText variant="h5" sx={{ pt: 4, pb: 3 }}>
+          <HeaderText variant="h5" sx={{ pt: 5, pb: 3 }}>
             High Profit Bettings
           </HeaderText>
           {highProfitBets && (
@@ -137,15 +137,29 @@ const SideBar: React.FC<Props> = ({
               {highProfitBets.map(
                 (highProfitBet: HighProfitBetType, index: number) => {
                   return (
-                    <Grid item xs={12}>
-                      <HighProfitBetItem
-                        highProfitBet={highProfitBet}
-                        key={highProfitBet.id}
-                      />
+                    <Grid item xs={12} key={highProfitBet.id}>
+                      <HighProfitBetItem highProfitBet={highProfitBet} />
                     </Grid>
                   );
                 }
               )}
+            </Grid>
+          )}
+        </>
+      )}
+
+      {/* News Side Bar */}
+      {!mobileMD && (
+        <>
+          {newsSideBar && (
+            <Grid container spacing={2} sx={{ pt: 5 }}>
+              {newsSideBar.map((article: ArticleType, index: number) => {
+                return (
+                  <Grid item xs={12} key={article.id}>
+                    <NewsSideBarItem article={article} />
+                  </Grid>
+                );
+              })}
             </Grid>
           )}
         </>

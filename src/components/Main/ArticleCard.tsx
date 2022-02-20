@@ -10,6 +10,7 @@ import {
 import { ArticleType } from "../../types/dataTypes";
 import truncate from "../../utils/truncate";
 import { FootballSubCategories } from "../../types/dataTypes";
+import slugify from "../../utils/slugify";
 
 const CardContainer = styled("div")(({ theme }) => ({
   padding: theme.spacing(2),
@@ -38,8 +39,8 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
             pt: 1,
             pb: 2,
           }}>
-          <Link href={"/foodball"}>Foodball</Link> /{" "}
-          <Link href={`/foodball/${article?.category}`}>
+          <Link href={"/news/foodball"}>Foodball</Link> /{" "}
+          <Link href={`/news/${slugify(article?.category || "")}`}>
             <span style={{ fontWeight: "900" }}>{article?.category}</span>
           </Link>
         </Typography>
@@ -52,7 +53,9 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
             pt: 1,
             pb: 2,
           }}>
-          <Link href={article?.category}>{article?.category}</Link>
+          <Link href={"/news/" + slugify(article?.category || "")}>
+            {article?.category}
+          </Link>
         </Typography>
       );
   };
@@ -60,7 +63,10 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
   return (
     <CardContainer className="hover-effect">
       <Box sx={{ height: "100%" }}>
-        <Link href={`${article?.category}/${article?.slug}` || "/"}>
+        <Link
+          href={
+            `/news/${slugify(article?.category || "")}/${article?.slug}` || "/"
+          }>
           <Box
             component="img"
             src={article?.picture || "https://dummyimage.com/600x400/000/fff"}
@@ -73,7 +79,9 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
         {/* Title */}
         <Link
           variant="h5"
-          href={`${article?.category}/${article?.slug}` || "/"}
+          href={
+            `/news/${slugify(article?.category || "")}/${article?.slug}` || "/"
+          }
           sx={{
             fontWeight: { xs: "900", md: "700" },
             pb: 2,
@@ -94,7 +102,11 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium asperiores pariatur error beatae animi! Molestias explicabo fugit reiciendis, voluptate quis officiis iusto fuga velit animi qui exercitationem dolorum labore ipsam eligendi quam blanditiis placeat aliquam unde ullam eaque maiores corrupti tenetur quisquam! Molestias porro doloribus harum! Expedita aliquam cupiditate eligendi vero nihil obcaecati nesciunt, non quisquam est odio vel, tempore veniam? Laudantium, nobis! Vitae odit iure aspernatur quibusdam doloribus hic eum officiis minus ad ipsam, nesciunt aliquid, dolorem iusto sequi, iste nulla inventore eveniet eius sunt amet.",
                 120
               )}{" "}
-            <ReadMore href={`${article?.category}/${article?.slug}` || "/"}>
+            <ReadMore
+              href={
+                `/news/${slugify(article?.category || "")}/${article?.slug}` ||
+                "/"
+              }>
               READ MORE
             </ReadMore>
           </Typography>

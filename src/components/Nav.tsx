@@ -1,8 +1,10 @@
 import React from "react";
-import { Button, Menu, MenuItem, styled, Box } from "@mui/material";
+import { Button, styled, Link, alpha } from "@mui/material";
 import categories from "../data/categories.json";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { CategoryType } from "../types/dataTypes";
+import { useNavigate } from "react-router-dom";
+import slugify from "../utils/slugify";
 
 const NavContainer = styled("div")(({ theme }) => ({
   display: "flex",
@@ -22,15 +24,32 @@ const NavItem = styled(Button)(({ theme }) => ({
   },
 }));
 
+const SubMenuContainer = styled("div")(({ theme }) => ({
+  position: "relative",
+  "&:hover .SubMenuContent": {
+    display: "block",
+  },
+}));
+
+const SubMenuContent = styled("div")(({ theme }) => ({
+  display: "none",
+  position: "absolute",
+  backgroundColor: theme.palette.primary.main,
+  zIndex: 1,
+  "& a": {
+    width: "130px",
+    fontSize: "0.775rem",
+    color: alpha("#B9B9B9", 0.8),
+    display: "block",
+    padding: theme.spacing(1),
+    "&:hover": {
+      color: alpha("#B9B9B9", 1),
+    },
+  },
+}));
+
 const Nav: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -38,52 +57,31 @@ const Nav: React.FC = () => {
         {categories.categories.map((category: CategoryType) => {
           if (!category.isFolder)
             return (
-              <NavItem key={category.name} disableRipple={true}>
+              <NavItem
+                key={category.name}
+                disableRipple={true}
+                onClick={() => navigate("/news/" + slugify(category.name))}>
                 {category.name}
               </NavItem>
             );
           else
             return (
-              <Box
-                component={"span"}
-                key={category.name}
-                onClick={handleClick}
-                onMouseEnter={handleClick}>
-                <NavItem
-                  // onMouseLeave={handleClose}
-                  disableRipple={true}
-                  sx={{ cursor: "unset" }}>
+              <SubMenuContainer>
+                <NavItem disableRipple={true} sx={{ cursor: "unset" }}>
                   {category.name} <KeyboardArrowDownIcon />
                 </NavItem>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                  sx={{
-                    "& .MuiPaper-root": {
-                      backgroundColor: "#191919",
-                      color: "white",
-                      borderRadius: 0,
-                    },
-                  }}>
-                  <div onMouseLeave={handleClose}>
-                    {category.items?.map((subcategory: CategoryType) => {
-                      return (
-                        <MenuItem
-                          onClick={handleClose}
-                          sx={{ fontSize: "0.775rem" }}
-                          key={subcategory.name}>
-                          {subcategory.name}
-                        </MenuItem>
-                      );
-                    })}
-                  </div>
-                </Menu>
-              </Box>
+                <SubMenuContent className={"SubMenuContent"}>
+                  {category.items?.map((subcategory: CategoryType) => {
+                    return (
+                      <Link
+                        href={"/news/" + slugify(subcategory.name)}
+                        key={subcategory.name}>
+                        {subcategory.name}
+                      </Link>
+                    );
+                  })}
+                </SubMenuContent>
+              </SubMenuContainer>
             );
         })}
       </NavContainer>

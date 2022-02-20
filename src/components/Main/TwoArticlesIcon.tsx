@@ -4,6 +4,7 @@ import { ArticleType } from "../../types/dataTypes";
 import truncate from "../../utils/truncate";
 import { DividedLine } from "./RelatedArticle";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
+import slugify from "../../utils/slugify";
 
 const ArticleItem = styled(Link)(({ theme }) => ({
   display: "flex",
@@ -25,20 +26,21 @@ const ArrowIcon = styled(ArrowCircleRightOutlinedIcon)(({ theme }) => ({
 
 interface Props {
   articles?: ArticleType[];
+  maxTitleLength?: number;
 }
 
-const TwoArticlesIcon: React.FC<Props> = ({ articles }) => {
+const TwoArticlesIcon: React.FC<Props> = ({ articles, maxTitleLength }) => {
   return (
     <>
       <DividedLine sx={{ ml: 2, mr: 2 }} />
       {articles?.map((article: ArticleType, index: number) => {
         return (
           <ArticleItem
-            key={article.title}
-            href={`${article.category}/${article.slug}`}>
+            key={article.id}
+            href={`/news/${slugify(article.category || "")}/${article.slug}`}>
             <ArrowIcon sx={{ m: 1 }} />
             <ArticleTitle variant={"h6"}>
-              {truncate(article.title, 35)}
+              {truncate(article.title, maxTitleLength || 35)}
             </ArticleTitle>
           </ArticleItem>
         );
