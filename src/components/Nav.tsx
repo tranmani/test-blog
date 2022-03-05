@@ -52,15 +52,12 @@ const Nav: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <nav>
       <NavContainer>
         {categories.categories.map((category: CategoryType) => {
           if (!category.isFolder)
             return (
-              <NavItem
-                key={category.name}
-                disableRipple={true}
-                onClick={() => navigate("/news/" + slugify(category.name))}>
+              <NavItem key={category.name} disableRipple={true} onClick={() => navigate("/news/" + slugify(category.name))}>
                 {category.name}
               </NavItem>
             );
@@ -73,9 +70,7 @@ const Nav: React.FC = () => {
                 <SubMenuContent className={"SubMenuContent"}>
                   {category.items?.map((subcategory: CategoryType) => {
                     return (
-                      <Link
-                        href={"/news/" + slugify(subcategory.name)}
-                        key={subcategory.name}>
+                      <Link href={"/news/" + slugify(subcategory.name)} key={subcategory.name}>
                         {subcategory.name}
                       </Link>
                     );
@@ -85,7 +80,7 @@ const Nav: React.FC = () => {
             );
         })}
       </NavContainer>
-    </>
+    </nav>
   );
 };
 

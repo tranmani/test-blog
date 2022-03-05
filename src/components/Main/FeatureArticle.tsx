@@ -11,26 +11,16 @@ interface Props {
   relatedArticles?: ArticleType[];
 }
 
-const FeatureArticle: React.FC<Props> = ({
-  featureArticle,
-  relatedArticles,
-}) => {
+const FeatureArticle: React.FC<Props> = ({ featureArticle, relatedArticles }) => {
   const articleDate = new Date((featureArticle && featureArticle?.date) || "");
 
   return (
     <>
       {/* Picture */}
-      <Link
-        href={
-          `/news/${slugify(featureArticle?.category || "")}/${
-            featureArticle?.slug
-          }` || "/"
-        }>
+      <Link href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || "/"}>
         <Box
           component="img"
-          src={
-            featureArticle?.picture || "https://dummyimage.com/900x500/000/fff"
-          }
+          src={featureArticle?.picture || "https://dummyimage.com/900x500/000/fff"}
           alt="feature article"
           sx={{ objectFit: "cover", width: "100%", maxHeight: "500px" }}
         />
@@ -47,23 +37,19 @@ const FeatureArticle: React.FC<Props> = ({
             {featureArticle?.category || "Affiliate"}
           </Typography>
         </Link>
+
         {/* Title */}
-        <Link
-          href={
-            `/news/${slugify(featureArticle?.category || "")}/${
-              featureArticle?.slug
-            }` || "/"
-          }>
+        <Link href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || "/"}>
           <Typography
             variant="h5"
             sx={{
               fontWeight: "bold",
               fontSize: { xs: "1.3rem", sm: "1.5rem" },
             }}>
-            {featureArticle?.title ||
-              "Betfinal last promotional video for affiliate"}
+            {featureArticle?.title || "Betfinal last promotional video for affiliate"}
           </Typography>
         </Link>
+
         {/* Date */}
         <Typography
           variant="body2"
@@ -74,6 +60,7 @@ const FeatureArticle: React.FC<Props> = ({
             month: "short",
           })} ${articleDate.getFullYear()}` || "05 Nov 2021"}
         </Typography>
+
         {/* Excerpt */}
         <Typography
           variant="body2"
@@ -86,20 +73,12 @@ const FeatureArticle: React.FC<Props> = ({
               500
             )}
 
-          <ReadMore
-            href={
-              `/news/${slugify(featureArticle?.category || "")}/${
-                featureArticle?.slug
-              }` || "/"
-            }>
-            READ MORE
-          </ReadMore>
+          <ReadMore href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || "/"}>READ MORE</ReadMore>
         </Typography>
       </Box>
+
       {/* Related articles */}
-      {relatedArticles && (
-        <RelatedArticle articles={relatedArticles as ArticleType[]} />
-      )}
+      {relatedArticles && <RelatedArticle articles={relatedArticles as ArticleType[]} />}
     </>
   );
 };

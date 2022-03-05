@@ -1,13 +1,6 @@
 import React from "react";
 import "./App.css";
-import {
-  alpha,
-  Grid,
-  styled,
-  Theme,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { alpha, Grid, styled, Theme, Typography, useMediaQuery } from "@mui/material";
 import Nav from "../components/Nav";
 import FeatureArticle from "../components/Main/FeatureArticle";
 import SideBar from "../components/SideBar/SideBar";
@@ -73,18 +66,14 @@ const SideBarContainer = styled("div")(({ theme }) => ({
 }));
 
 const App: React.FC = () => {
-  const mobileMD = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down("md")
-  );
+  const mobileMD = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
   const featureArticle = [...news.news][0];
   const relatedArticles = [...news.news].splice(0, 4);
   const latestNewsCards = [...news.news].splice(0, 6);
   const latestNewsTitles = [...news.news].splice(0, 12);
   const nextArticles = [...news.news].splice(0, 2);
-  const bettingGuides = [...news.news]
-    .filter((article: ArticleType) => article.category === GUIDES)
-    .splice(0, 9);
+  const bettingGuides = [...news.news].filter((article: ArticleType) => article.category === GUIDES).splice(0, 9);
   const newsSideBar = [...news.news].splice(0, 3);
 
   return (
@@ -93,10 +82,7 @@ const App: React.FC = () => {
         <HeaderText variant="h5">Blog News Feed</HeaderText>
         <Nav />
         {/* Feature article */}
-        <FeatureArticle
-          featureArticle={featureArticle}
-          relatedArticles={relatedArticles}
-        />
+        <FeatureArticle featureArticle={featureArticle} relatedArticles={relatedArticles} />
         <Grid container pt={2}>
           <Grid item xs={6}>
             <ArticleCard article={news.news[0] as ArticleType} />
@@ -105,14 +91,11 @@ const App: React.FC = () => {
             <ArticleCard article={news.news[1] as ArticleType} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TwoArticlesIcon
-              articles={nextArticles}
-              maxTitleLength={mobileMD ? 70 : 35}
-            />
+            <TwoArticlesIcon articles={nextArticles} maxTitleLength={mobileMD ? 70 : 45} />
           </Grid>
           {!mobileMD && (
             <Grid item md={6}>
-              <TwoArticlesIcon articles={nextArticles} />
+              <TwoArticlesIcon articles={nextArticles} maxTitleLength={mobileMD ? 70 : 45} />
             </Grid>
           )}
         </Grid>
@@ -122,6 +105,7 @@ const App: React.FC = () => {
           Latest News
         </HeaderText>
 
+        {/* Latest news CARD */}
         <Grid container sx={{ pb: 5 }}>
           {latestNewsCards.map((article: ArticleType, index: number) => {
             return (
@@ -132,6 +116,7 @@ const App: React.FC = () => {
           })}
         </Grid>
 
+        {/* Latest news TITLE ONLY */}
         <Grid container>
           {latestNewsTitles.map((article: ArticleType, index: number) => {
             return (
