@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { alpha, Grid, Link, styled, Theme, Typography, useMediaQuery } from "@mui/material";
+import { alpha, Grid, Link, styled, Typography } from "@mui/material";
 import Nav from "../components/Nav";
 import SideBar from "../components/SideBar/SideBar";
 import ArticleCard from "../components/Main/ArticleCard";
@@ -70,7 +70,7 @@ const SideBarContainer = styled("div")(({ theme }) => ({
 const CategoryPage: React.FC = () => {
   const { categoryName } = useParams();
   const navigate = useNavigate();
-  const mobileMD = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
+  // const mobileMD = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
   const featureArticle = [...news.news].filter((article: ArticleType) => {
     return slugify(article.category) === categoryName;

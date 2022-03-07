@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, styled, alpha, Box } from "@mui/material";
+import { Button, styled, alpha } from "@mui/material";
 import categories from "../data/categories.json";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { CategoryType } from "../types/dataTypes";
