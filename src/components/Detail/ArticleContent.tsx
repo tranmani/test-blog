@@ -16,12 +16,12 @@ const ArticleContentDiv = styled("div")(({ theme }) => ({
 }));
 
 interface Props {
-  article: ArticleType;
+  article?: ArticleType;
   relatedArticles: ArticleType[];
 }
 
 const ArticleContent: React.FC<Props> = ({ article, relatedArticles }) => {
-  const articleDate = article.date && new Date(article.date);
+  const articleDate = article?.date && new Date(article.date);
 
   return (
     <Article>
@@ -41,7 +41,7 @@ const ArticleContent: React.FC<Props> = ({ article, relatedArticles }) => {
           fontWeight: "900",
           fontSize: { xs: "1.3rem", sm: "1.5rem" },
         }}>
-        {article.title}
+        {article?.title}
       </Typography>
 
       {/* Category */}
@@ -50,11 +50,11 @@ const ArticleContent: React.FC<Props> = ({ article, relatedArticles }) => {
         sx={{
           pb: { xs: 1, sm: 4 },
         }}>
-        {article.category}
+        {article?.category}
       </Typography>
 
       {/* Content */}
-      <ArticleContentDiv dangerouslySetInnerHTML={{ __html: article.content }} />
+      <ArticleContentDiv dangerouslySetInnerHTML={{ __html: article?.content || "" }} />
 
       {/* Related articles */}
       {relatedArticles && <RelatedArticle articles={relatedArticles as ArticleType[]} />}

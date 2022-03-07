@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, styled, Link, alpha } from "@mui/material";
+import { Button, styled, alpha, Box } from "@mui/material";
 import categories from "../data/categories.json";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { CategoryType } from "../types/dataTypes";
@@ -11,6 +11,9 @@ const NavContainer = styled("div")(({ theme }) => ({
   columnGap: "3px",
   flexWrap: "wrap",
   margin: `${theme.spacing(4)} 0`,
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "space-evenly",
+  },
 }));
 
 const NavItem = styled(Button)(({ theme }) => ({
@@ -36,12 +39,13 @@ const SubMenuContent = styled("div")(({ theme }) => ({
   position: "absolute",
   backgroundColor: theme.palette.primary.main,
   zIndex: 1,
-  "& a": {
+  "& > div": {
     width: "130px",
     fontSize: "0.775rem",
     color: alpha("#B9B9B9", 0.8),
     display: "block",
     padding: theme.spacing(1),
+    cursor: "pointer",
     "&:hover": {
       color: alpha("#B9B9B9", 1),
     },
@@ -70,9 +74,9 @@ const Nav: React.FC = () => {
                 <SubMenuContent className={"SubMenuContent"}>
                   {category.items?.map((subcategory: CategoryType) => {
                     return (
-                      <Link href={"/news/" + slugify(subcategory.name)} key={subcategory.name}>
+                      <div onClick={() => navigate("/news/" + slugify(subcategory.name))} key={subcategory.name}>
                         {subcategory.name}
-                      </Link>
+                      </div>
                     );
                   })}
                 </SubMenuContent>

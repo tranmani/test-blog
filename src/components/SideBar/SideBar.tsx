@@ -1,20 +1,6 @@
 import React from "react";
-import {
-  Box,
-  Grid,
-  Link,
-  styled,
-  Theme,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import {
-  AdvertisementType,
-  ArticleType,
-  CasinoWinType,
-  HighProfitBetType,
-  LiveFootballType,
-} from "../../types/dataTypes";
+import { Box, Grid, Link, styled, Theme, Typography, useMediaQuery } from "@mui/material";
+import { AdvertisementType, ArticleType, CasinoWinType, HighProfitBetType, LiveFootballType } from "../../types/dataTypes";
 import LiveFootball from "./LiveFootball";
 import BettingGuideItem from "./BettingGuideItem";
 import CasinoWinItem from "./CasinoWinItem";
@@ -45,17 +31,8 @@ interface Props {
   newsSideBar: ArticleType[];
 }
 
-const SideBar: React.FC<Props> = ({
-  liveFootballs,
-  advertisement,
-  bettingGuides,
-  casinoWins,
-  highProfitBets,
-  newsSideBar,
-}) => {
-  const mobileMD = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down("md")
-  );
+const SideBar: React.FC<Props> = ({ liveFootballs, advertisement, bettingGuides, casinoWins, highProfitBets, newsSideBar }) => {
+  const mobileMD = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
   return (
     <Container>
@@ -63,14 +40,12 @@ const SideBar: React.FC<Props> = ({
       <HeaderText variant="h5">Live Now Foodball</HeaderText>
       {liveFootballs &&
         liveFootballs.map((liveFootball: LiveFootballType, index: number) => {
-          return (
-            <LiveFootball liveFootball={liveFootball} key={liveFootball.id} />
-          );
+          return <LiveFootball liveFootball={liveFootball} key={liveFootball.id} />;
         })}
 
       {/* Advertisement */}
       {advertisement && (
-        <Link href={"/news/" + advertisement?.link} target="__blank">
+        <Link href={advertisement?.link} target="__blank">
           <Box
             component={"img"}
             src={advertisement?.picture}
@@ -107,10 +82,7 @@ const SideBar: React.FC<Props> = ({
             Latest Casino Win
           </HeaderText>
           {casinoWins && (
-            <Grid
-              container
-              spacing={1}
-              sx={{ backgroundColor: "secondary.main" }}>
+            <Grid container spacing={1} sx={{ backgroundColor: "secondary.main" }}>
               {casinoWins.map((casinoWin: CasinoWinType, index: number) => {
                 return (
                   <Grid item xs={12} key={casinoWin.id}>
@@ -130,19 +102,14 @@ const SideBar: React.FC<Props> = ({
             High Profit Bettings
           </HeaderText>
           {highProfitBets && (
-            <Grid
-              container
-              spacing={2}
-              sx={{ backgroundColor: "secondary.main" }}>
-              {highProfitBets.map(
-                (highProfitBet: HighProfitBetType, index: number) => {
-                  return (
-                    <Grid item xs={12} key={highProfitBet.id}>
-                      <HighProfitBetItem highProfitBet={highProfitBet} />
-                    </Grid>
-                  );
-                }
-              )}
+            <Grid container spacing={2} sx={{ backgroundColor: "secondary.main" }}>
+              {highProfitBets.map((highProfitBet: HighProfitBetType, index: number) => {
+                return (
+                  <Grid item xs={12} key={highProfitBet.id}>
+                    <HighProfitBetItem highProfitBet={highProfitBet} />
+                  </Grid>
+                );
+              })}
             </Grid>
           )}
         </>

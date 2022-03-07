@@ -81,8 +81,11 @@ const App: React.FC = () => {
       <MainContainer>
         <HeaderText variant="h5">Blog News Feed</HeaderText>
         <Nav />
+
         {/* Feature article */}
         <FeatureArticle featureArticle={featureArticle} relatedArticles={relatedArticles} />
+
+        {/* Latest news CARD */}
         <Grid container pt={2}>
           <Grid item xs={6}>
             <ArticleCard article={news.news[0] as ArticleType} />

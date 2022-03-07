@@ -17,7 +17,7 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle, relatedArticles }) =>
   return (
     <>
       {/* Picture */}
-      <Link href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || "/"}>
+      <Link href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || ""}>
         <Box
           component="img"
           src={featureArticle?.picture || "https://dummyimage.com/900x500/000/fff"}
@@ -27,7 +27,7 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle, relatedArticles }) =>
       </Link>
       <Box sx={{ px: { xs: 2, sm: 0 } }}>
         {/* Category */}
-        <Link href={"/news/" + slugify(featureArticle?.category || "") || "/"}>
+        <Link href={"/news/" + slugify(featureArticle?.category || "") || ""}>
           <Typography
             variant="body2"
             sx={{
@@ -39,7 +39,7 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle, relatedArticles }) =>
         </Link>
 
         {/* Title */}
-        <Link href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || "/"}>
+        <Link href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || ""}>
           <Typography
             variant="h5"
             sx={{

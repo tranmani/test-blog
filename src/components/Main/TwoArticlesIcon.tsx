@@ -35,13 +35,9 @@ const TwoArticlesIcon: React.FC<Props> = ({ articles, maxTitleLength }) => {
       <DividedLine sx={{ ml: 2, mr: 2 }} />
       {articles?.map((article: ArticleType, index: number) => {
         return (
-          <ArticleItem
-            key={article.id}
-            href={`/news/${slugify(article.category || "")}/${article.slug}`}>
+          <ArticleItem key={article.id} href={`/news/${slugify(article.category || "")}/${article.slug}`}>
             <ArrowIcon sx={{ m: 1 }} />
-            <ArticleTitle variant={"h6"}>
-              {truncate(article.title, maxTitleLength || 35)}
-            </ArticleTitle>
+            <ArticleTitle variant={"h6"}>{truncate(article.title, maxTitleLength || 35)}</ArticleTitle>
           </ArticleItem>
         );
       })}

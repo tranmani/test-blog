@@ -17,7 +17,7 @@ import advertisement from "../data/advertisement.json";
 import casinoWins from "../data/casinoWins.json";
 import highProfitBets from "../data/highProfitBets.json";
 import ArticleContent from "../components/Detail/ArticleContent";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Container = styled("div")(({ theme }) => ({
   display: "flex",
@@ -68,6 +68,7 @@ const SideBarContainer = styled("div")(({ theme }) => ({
 
 const DetailPage: React.FC = () => {
   const { articleName } = useParams();
+  const navigate = useNavigate();
   const mobileMD = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
   const allNews = useMemo(() => [...news.news], []);
@@ -77,11 +78,16 @@ const DetailPage: React.FC = () => {
   const bettingGuides = [...news.news].filter((article: ArticleType) => article.category === GUIDES).splice(0, 9);
   const newsSideBar = [...news.news].splice(0, 3);
 
-  const [article, setArticle] = useState<ArticleType>({} as ArticleType);
+  const [article, setArticle] = useState<ArticleType | undefined>({} as ArticleType);
 
   useEffect(() => {
-    setArticle(allNews.find((article: ArticleType) => article.slug === articleName) || ({} as ArticleType));
-  }, [articleName, allNews]);
+    // Check if article is found
+    if (!allNews.find((article: ArticleType) => article.slug === articleName)) {
+      navigate("/error");
+    } else {
+      setArticle(allNews.find((article: ArticleType) => article.slug === articleName));
+    }
+  }, [articleName, allNews, navigate]);
 
   return (
     <Container>
@@ -90,6 +96,7 @@ const DetailPage: React.FC = () => {
           <HeaderText variant="h5">Blog News Feed</HeaderText>
         </Link>
         <Nav />
+
         {/* Article Content */}
         <ArticleContent article={article} relatedArticles={relatedArticles} />
         <Grid container pt={2}>
