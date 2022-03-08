@@ -124,7 +124,7 @@ const CategoryPage: React.FC = () => {
             })
           ) : (
             <Grid item xs={12}>
-              <Typography variant="h2" sx={{ fontSize: "2rem", textAlign: "center" }}>
+              <Typography variant="h2" sx={{ fontSize: "2rem", textAlign: "center", pt: 4 }}>
                 No news at the moment
               </Typography>
             </Grid>
