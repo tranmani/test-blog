@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Link,
-  styled,
-  Theme,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Link, styled, Theme, Typography, useMediaQuery } from "@mui/material";
 import { ArticleType } from "../../types/dataTypes";
 import truncate from "../../utils/truncate";
 import { FootballSubCategories } from "../../types/dataTypes";
@@ -38,7 +31,8 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
           sx={{
             pt: 1,
             pb: 2,
-          }}>
+          }}
+        >
           <Link href={"/news/foodball"}>Foodball</Link> /{" "}
           <Link href={`/news/${slugify(article?.category || "")}`}>
             <span style={{ fontWeight: "900" }}>{article?.category}</span>
@@ -52,10 +46,9 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
           sx={{
             pt: 1,
             pb: 2,
-          }}>
-          <Link href={"/news/" + slugify(article?.category || "")}>
-            {article?.category}
-          </Link>
+          }}
+        >
+          <Link href={"/news/" + slugify(article?.category || "")}>{article?.category}</Link>
         </Typography>
       );
   };
@@ -63,10 +56,7 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
   return (
     <CardContainer className="hover-effect">
       <Box sx={{ height: "100%" }}>
-        <Link
-          href={
-            `/news/${slugify(article?.category || "")}/${article?.slug}` || "/"
-          }>
+        <Link href={`/news/${slugify(article?.category || "")}/${article?.slug}` || "/"}>
           <Box
             component="img"
             src={article?.picture || "https://dummyimage.com/600x400/000/fff"}
@@ -79,16 +69,14 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
         {/* Title */}
         <Link
           variant="h5"
-          href={
-            `/news/${slugify(article?.category || "")}/${article?.slug}` || "/"
-          }
+          href={`/news/${slugify(article?.category || "")}/${article?.slug}` || "/"}
           sx={{
             fontWeight: { xs: "900", md: "700" },
             pb: 2,
             fontSize: { xs: "1rem", md: "1.5rem" },
-          }}>
-          {truncate(article?.title || "", 70) ||
-            "Betfinal last promotional video for affiliate"}
+          }}
+        >
+          {truncate(article?.title || "", 70) || "Tranmani last promotional video for affiliate"}
         </Link>
         {/* Excerpt */}
         {!mobile && (
@@ -96,19 +84,14 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
             variant="body2"
             sx={{
               pb: 1,
-            }}>
+            }}
+          >
             {truncate(article?.excerpt || "", 120) ||
               truncate(
                 "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium asperiores pariatur error beatae animi! Molestias explicabo fugit reiciendis, voluptate quis officiis iusto fuga velit animi qui exercitationem dolorum labore ipsam eligendi quam blanditiis placeat aliquam unde ullam eaque maiores corrupti tenetur quisquam! Molestias porro doloribus harum! Expedita aliquam cupiditate eligendi vero nihil obcaecati nesciunt, non quisquam est odio vel, tempore veniam? Laudantium, nobis! Vitae odit iure aspernatur quibusdam doloribus hic eum officiis minus ad ipsam, nesciunt aliquid, dolorem iusto sequi, iste nulla inventore eveniet eius sunt amet.",
                 120
               )}{" "}
-            <ReadMore
-              href={
-                `/news/${slugify(article?.category || "")}/${article?.slug}` ||
-                "/"
-              }>
-              READ MORE
-            </ReadMore>
+            <ReadMore href={`/news/${slugify(article?.category || "")}/${article?.slug}` || "/"}>READ MORE</ReadMore>
           </Typography>
         )}
       </Box>

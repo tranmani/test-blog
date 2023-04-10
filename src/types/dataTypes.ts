@@ -60,7 +60,7 @@ export interface HighProfitBetType {
   link: string;
 }
 
-export const Categories = ["Casino", "Sports", "Football", "Esports", "New Slots", "Guides", "Affiliate", "Betfinal"];
+export const Categories = ["Casino", "Sports", "Football", "Esports", "New Slots", "Guides", "Affiliate", "Tranmani"];
 export const FootballSubCategories = ["Premier League", "Championship", "La Liga", "Bundesliga", "Serie A", "Liga 1"]
 
 export const CASINO = "Casino"
@@ -77,4 +77,4 @@ export const E_SPORTS = "E-Sports"
 export const NEW_SLOT = "New Slot"
 export const GUIDES = "Guides"
 export const AFFILIATES = "Affiliates"
-export const BETFINAL = "Betfinal"
+export const Tranmani = "Tranmani"

@@ -33,7 +33,8 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle, relatedArticles }) =>
             sx={{
               pt: 1,
               pb: { xs: 0, sm: 2 },
-            }}>
+            }}
+          >
             {featureArticle?.category || "Affiliate"}
           </Typography>
         </Link>
@@ -45,8 +46,9 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle, relatedArticles }) =>
             sx={{
               fontWeight: "bold",
               fontSize: { xs: "1.3rem", sm: "1.5rem" },
-            }}>
-            {featureArticle?.title || "Betfinal last promotional video for affiliate"}
+            }}
+          >
+            {featureArticle?.title || "Tranmani last promotional video for affiliate"}
           </Typography>
         </Link>
 
@@ -55,7 +57,8 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle, relatedArticles }) =>
           variant="body2"
           sx={{
             pb: 1,
-          }}>
+          }}
+        >
           {`${articleDate.getDate()} ${articleDate.toLocaleString("en-us", {
             month: "short",
           })} ${articleDate.getFullYear()}` || "05 Nov 2021"}
@@ -66,14 +69,17 @@ const FeatureArticle: React.FC<Props> = ({ featureArticle, relatedArticles }) =>
           variant="body2"
           sx={{
             pb: 1,
-          }}>
+          }}
+        >
           {truncate(featureArticle?.excerpt || "", 500) ||
             truncate(
               "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium asperiores pariatur error beatae animi! Molestias explicabo fugit reiciendis, voluptate quis officiis iusto fuga velit animi qui exercitationem dolorum labore ipsam eligendi quam blanditiis placeat aliquam unde ullam eaque maiores corrupti tenetur quisquam! Molestias porro doloribus harum! Expedita aliquam cupiditate eligendi vero nihil obcaecati nesciunt, non quisquam est odio vel, tempore veniam? Laudantium, nobis! Vitae odit iure aspernatur quibusdam doloribus hic eum officiis minus ad ipsam, nesciunt aliquid, dolorem iusto sequi, iste nulla inventore eveniet eius sunt amet.",
               500
             )}
 
-          <ReadMore href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || "/"}>READ MORE</ReadMore>
+          <ReadMore href={`/news/${slugify(featureArticle?.category || "")}/${featureArticle?.slug}` || "/"}>
+            READ MORE
+          </ReadMore>
         </Typography>
       </Box>
 
